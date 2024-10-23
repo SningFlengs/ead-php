@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .search-bar input {
+    padding: 8px;
+    width: 300px;
+}
+
+.navbar .user-menu {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .profile-icon {
+    background-color: #ccc;
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.banner {
+    background-color: #e0f7fa;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banner-content h1 {
+    font-size: 36px;
+}
+
+.banner-content p {
+    margin-top: 10px;
+}
+
+.courses {
+    padding: 20px;
+}
+
+.courses h2 {
+    margin-bottom: 20px;
+}
+
+.course-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.course-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 30%;
+    text-align: center;
+}
+
+.course-item img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.course-info h3 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.course-info p {
+    margin-top: 5px;
+    color: #666;
+}
+
+.course-info span {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+/* Estilo da barra de navegação */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    margin-right: 1100px;
+}
+
+.logo img {
+    width: 100px; /* Define o tamanho da imagem da logo */
+    height: 90px; /* Mantém o formato quadrado */
+    object-fit: contain; /* Assegura que a imagem se encaixe corretamente */
+}
+
+.search-bar input {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+}
+
+.profile-icon {
+    background-color: #333;
+    color: #fff;
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+}
