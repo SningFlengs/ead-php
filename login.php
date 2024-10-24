@@ -15,11 +15,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(mysqli_num_rows($result) > 0){
         mysqli_close($connection);
-        header("Location: pages/sucesso.html");
+        header("Location:pages/sucesso.html");
         exit();
     }else{
         mysqli_close($connection);
-        header("Location: pages/erro.html");
+        header("Location:pages/login.php?menssagem_erro=Erro no login");
         exit();
     }
 

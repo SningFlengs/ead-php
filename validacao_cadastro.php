@@ -16,16 +16,29 @@ if(isset($_POST["enviar_cadastro"])){
         header("location:pages/cadastro.php?menssagem_erro=Ambos os campos devem ser preenchidos!");
     }
     else{
-        
-        $query = "INSERT INTO login (email, senha) VALUES ('$novo_email', '$nova_senha')";
 
-        $result = mysqli_query($connection, $query);
-
-        if(!$result){
-            die("Erro na consulta do banco dados: ".mysqli_error($connection));
-        }else{
-            header("location:login.html?menssagem_sucesso=Cadastro feito com sucesso");
+        // Verificando se o email já está cadastrado
+        $check_query = "SELECT * FROM login WHERE email = '$novo_email'";
+        $check_result = mysqli_query($connection, $check_query);
+         
+        if(mysqli_num_rows($check_result) > 0){
+            header("location:pages/cadastro.php?menssagem_erro=Este email já está cadastrado.");
         }
+        // Cadastrando novo email
+        else{
+
+            $query = "INSERT INTO login (email, senha) VALUES ('$novo_email', '$nova_senha')";
+
+            $result = mysqli_query($connection, $query);
+    
+            if(!$result){
+                die("Erro na consulta do banco dados: ".mysqli_error($connection));
+            }else{
+                header("location:pages/login.html?menssagem_sucesso=Cadastro feito com sucesso");
+            }
+        }
+        
+
     }
 
 }
