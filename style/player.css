@@ -1,0 +1,94 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* Container principal */
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Seção do player */
+.player-section {
+    flex: 2;
+    margin-right: 20px;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.course-description {
+    margin-top: 15px;
+}
+
+.course-description h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.course-description p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Seção de aulas */
+.lessons-section {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.lessons-section h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.lessons-section {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.lessons-list {
+    list-style-type: decimal; /* Garante que a numeração esteja ativada */
+    padding-left: 20px; /* Espaçamento à esquerda para os números */
+}
+
+.lessons-list li {
+    margin-bottom: 10px;
+    display: flex; /* Alinha a imagem e o texto na mesma linha */
+    align-items: center;
+}
+
+.lessons-list a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    margin-right: 10px; /* Espaçamento entre o link e a thumb */
+}
+
+.lessons-list a:hover {
+    color: #007BFF;
+    text-decoration: underline;
+}
+
+.thumb {
+    width: 100px; /* Tamanho da imagem */
+    height: 80px;
+    object-fit: contain;
+}

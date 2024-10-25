@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 include "dbphp.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -15,11 +16,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(mysqli_num_rows($result) > 0){
         mysqli_close($connection);
-        header("Location:pages/sucesso.html");
+
+        $_SESSION["user_email"] = $email;
+        header("Location:pages/home.php");
         exit();
     }else{
         mysqli_close($connection);
-        header("Location:pages/login.php?menssagem_erro=Erro no login");
+        header("Location:pages/auth/login.php?menssagem_erro=Erro no login");
         exit();
     }
 
