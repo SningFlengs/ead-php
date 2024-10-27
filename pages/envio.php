@@ -13,6 +13,11 @@ include "../dbphp.php";
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Envio</title>
+    <style>
+        .question-item {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     
@@ -42,16 +47,10 @@ include "../dbphp.php";
                   ?>
 
                   <?php
-                    if(isset($_SESSION["user_email"])){
-                      $user_email = $_SESSION["user_email"];
 
-                      if ($user_email === "admin@admin.com") {
-                        echo '<a class="nav-link text-white" href="menssagens-admin.php">Menssagens</a>';
-                      }
-                      else{
-                        echo '<a class="nav-link text-white" href="menssagens.php">Menssagens</a>';
-                      }
-                    }
+                  if(isset($_SESSION["user_email"])){
+                    echo '<a href="mensagem.php" class="nav-link text-white">Mensagens</a>';
+                  }
                     
                   ?>
                   
@@ -87,10 +86,34 @@ include "../dbphp.php";
             <label for="video" class="form-label">Selecione o vídeo (formato MP4):</label>
             <input type="file" name="video" accept="video/mp4" class="form-control" required>
         </div>
+
+        <!-- Campo para adicionar questões -->
+        <div class="mb-3">
+            <label for="questions" class="form-label">Questões da Aula:</label>
+            <div id="question-container">
+                <!-- Questões serão adicionadas aqui -->
+            </div>
+            <button type="button" class="btn btn-secondary mt-2" onclick="addQuestion()">Adicionar Questão</button>
+        </div>
         
         <button type="submit" name="enviado" class="btn btn-primary w-100">Enviar Vídeo</button>
     </form>
 </main>
+
+<!-- Script para adicionar campos de questões dinamicamente -->
+<script>
+    function addQuestion() {
+        const container = document.getElementById('question-container');
+        const questionCount = container.children.length;
         
+        const div = document.createElement('div');
+        div.classList.add('question-item');
+        div.innerHTML = `
+            <label for="question_${questionCount}" class="form-label">Questão ${questionCount + 1}:</label>
+            <input type="text" name="questions[]" class="form-control" placeholder="Digite a pergunta aqui">
+        `;
+        container.appendChild(div);
+    }
+</script>
 </body>
 </html>

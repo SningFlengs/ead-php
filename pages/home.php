@@ -64,17 +64,11 @@ mysqli_close($connection);
                   ?>
 
                   <?php
-                    if(isset($_SESSION["user_email"])){
-                      $user_email = $_SESSION["user_email"];
 
-                      if ($user_email === "admin@admin.com") {
-                        echo '<a class="nav-link text-white" href="menssagens-admin.php">Menssagens</a>';
-                      }
-                      else{
-                        echo '<a class="nav-link text-white" href="menssagens.php">Menssagens</a>';
-                      }
+                    if(isset($_SESSION["user_email"])){
+                      echo '<a href="mensagem.php" class="nav-link text-white">Mensagens</a>';
                     }
-                    
+                      
                   ?>
                   
                   
@@ -88,47 +82,47 @@ mysqli_close($connection);
     </header>
 
     <main>
+
         <div class="row" style="margin-top: 50px">
-            <?php
-            // Loop pelos vídeos e exibição em colunas
-            foreach ($videos as $index => $video) {
-                echo '<div class="col-md-4 mb-4 d-flex">';
-                echo '  <div class="card w-100">';
-                if(empty($video["capa"])){
-                  echo '<img style="width: 495px; height: 290px " src="../uploads/images/imagem_padrao.jpg" class="card-img-top" alt="Capa padrão">';
-                }
-                else{
-                  echo '<img style="width: 495px; height: 290px " src="../' . $video["capa"] . '" class="card-img-top" alt="Capa do ' . htmlspecialchars($video["titulo"]) . '">';
-                }
-                echo '      <div class="card-body">';
-                echo '          <h5 class="card-title">' . htmlspecialchars($video["titulo"]) . '</h5>';
-                echo '          <p class="card-text">' . htmlspecialchars($video["descricao"]) . '</p>';
-                echo '<a href="player.php?id=' . urlencode($video['id']) . '" class="btn btn-primary" target="_blank">Assistir Vídeo</a>';
+        <?php
+          // Loop pelos vídeos e exibição em colunas
+          foreach ($videos as $index => $video) {
+              echo '<div class="col-md-4 mb-4 d-flex">';
+              echo '  <div class="card w-100">';
+              if(empty($video["capa"])){
+                echo '<img style="width: 494px; height: 290px " src="../uploads/images/imagem_padrao.jpg" class="card-img-top" alt="Capa padrão">';
+              }
+              else{
+                echo '<img style="width: 494px; height: 290px " src="../' . $video["capa"] . '" class="card-img-top" alt="Capa do ' . htmlspecialchars($video["titulo"]) . '">';
+              }
+              echo '      <div class="card-body">';
+              echo '          <h5 class="card-title">' . htmlspecialchars($video["titulo"]) . '</h5>';
+              echo '          <p class="card-text">' . htmlspecialchars($video["descricao"]) . '</p>';
+              echo '<a href="player.php?id=' . urlencode($video['id']) . '" class="btn btn-primary" target="_blank">Assistir Vídeo</a>';
 
-
-
-                // Busca o email da sessão
-                if(isset($_SESSION["user_email"])){
+              // Verifica se o usuário logado é admin
+              if(isset($_SESSION["user_email"])){
                   $user_email = $_SESSION["user_email"];
-
+                  
                   if($user_email === "admin@admin.com"){
-                    echo '<a href="editar.php?id=' . urlencode($video['id']) . '" class="btn btn-primary" target="_blank" style="margin-left: 5px">Editar</a>';
-                    echo '          <a href="../video_delete.php?id=' . urlencode($video['id']) . '" class="btn" style="background-color: red; color: white;" onclick="return confirm(\'Tem certeza que deseja excluir este vídeo?\');">Excluir</a>';
+                      echo '<a href="editar.php?id=' . urlencode($video['id']) . '" class="btn btn-primary" target="_blank" style="margin-left: 5px">Editar</a>';
+                      echo '          <a href="../video_delete.php?id=' . urlencode($video['id']) . '" class="btn" style="background-color: red; color: white;" onclick="return confirm(\'Tem certeza que deseja excluir este vídeo?\');">Excluir</a>';
+                      
+                      // Adiciona o botão "Ver Respostas" para administradores
+                      echo '<a href="respostas.php?id=' . urlencode($video['id']) . '" class="btn btn-info" style="margin-left: 5px">Ver Respostas</a>';
                   }
-                }
+              }
 
-                
-
-                echo '      </div>';
-                echo '  </div>';
-                echo '</div>';
-                
-                // Quebra de linha a cada 3 vídeos
-                if (($index + 1) % 3 == 0) {
-                    echo '<div class="w-100"></div>';
-                }
-            }
-            ?>
+              echo '      </div>';
+              echo '  </div>';
+              echo '</div>';
+              
+              // Quebra de linha a cada 3 vídeos
+              if (($index + 1) % 3 == 0) {
+                  echo '<div class="w-100"></div>';
+              }
+          }
+          ?>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

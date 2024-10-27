@@ -6,6 +6,8 @@ include "../dbphp.php";
 if(!isset($_SESSION["user_email"])){
   header("Location:auth/erro.html");
   exit();
+}else{
+  $user_email = $_SESSION["user_email"];
 }
 
 ?>
@@ -52,16 +54,10 @@ if(!isset($_SESSION["user_email"])){
                   ?>
 
                   <?php
-                    if(isset($_SESSION["user_email"])){
-                      $user_email = $_SESSION["user_email"];
 
-                      if ($user_email === "admin@admin.com") {
-                        echo '<a class="nav-link text-white" href="menssagens-admin.php">Menssagens</a>';
-                      }
-                      else{
-                        echo '<a class="nav-link text-white" href="menssagens.php">Menssagens</a>';
-                      }
-                    }
+                  if(isset($_SESSION["user_email"])){
+                    echo '<a href="mensagem.php" class="nav-link text-white">Mensagens</a>';
+                  }
                     
                   ?>
 
@@ -87,6 +83,7 @@ if(!isset($_SESSION["user_email"])){
                   ?>
         
               </li>
+      
               <li class="mb-3">
                 <a href="../excluir_conta.php" class="btn btn-delete btn-block" style="background-color: #dc3545; color: white; width: 100%;" onclick="return confirm('Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.');">Excluir Conta</a>
 

@@ -3,12 +3,12 @@
 session_start();
 include 'dbphp.php';
 
-if(!isset($_SESSION["user_email"])){
+if (!isset($_SESSION["user_email"])) {
     header("location:pages/auth/login.php");
     exit();
 }
 
-if(isset($_POST['enviado'])){
+if (isset($_POST['enviado'])) {
 
     $user_email = $_SESSION["user_email"]; 
 
@@ -46,12 +46,25 @@ if(isset($_POST['enviado'])){
         echo "Upload realizado com sucesso!";
     }
 
+    // Obter o ID do vídeo recém-inserido
+    $video_id = mysqli_insert_id($connection);
+
+    // Obtenha as questões do formulário
+    $questions = $_POST['questions'] ?? [];
+
+    // Salvando questões (exemplo de inserção)
+    foreach ($questions as $question) {
+        if (!empty(trim($question))) {
+            $query = "INSERT INTO video_questions (video_id, question) VALUES (?, ?)";
+            $stmt = mysqli_prepare($connection, $query);
+            mysqli_stmt_bind_param($stmt, "is", $video_id, $question); 
+            mysqli_stmt_execute($stmt);
+        }
+    }
+
     mysqli_close($connection);
 
     header("Location: pages/home.php");
     exit();
-
 }
-
-
 ?>

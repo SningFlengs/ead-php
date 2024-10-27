@@ -22,7 +22,7 @@ if (trim($new_title) === '') {
 }
 
 if (trim($new_description) === '') {
-    $new_description = $video['descricao']; // Manter a descrição atual se o campo estiver vazio
+    $new_description = $video['descricao']; 
 }
 
 // Atualizar os dados no banco de dados

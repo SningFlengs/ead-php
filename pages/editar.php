@@ -57,16 +57,10 @@ if ($result && mysqli_num_rows($result) > 0) {
                   ?>
 
                   <?php
-                    if(isset($_SESSION["user_email"])){
-                      $user_email = $_SESSION["user_email"];
 
-                      if ($user_email === "admin@admin.com") {
-                        echo '<a class="nav-link text-white" href="menssagens-admin.php">Menssagens</a>';
-                      }
-                      else{
-                        echo '<a class="nav-link text-white" href="menssagens.php">Menssagens</a>';
-                      }
-                    }
+                  if(isset($_SESSION["user_email"])){
+                    echo '<a href="mensagem.php" class="nav-link text-white">Mensagens</a>';
+                  }
                     
                   ?>
                   
