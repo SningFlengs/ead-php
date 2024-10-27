@@ -1,9 +1,13 @@
 <?php
 session_start();
+if(!isset($_SESSION["user_email"])){
+  header("Location:auth/erro.html");
+  exit();
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,10 +26,9 @@ session_start();
     <header>
         <nav class="navbar bg-dark navbar-expand-sm">
             <div class="container">
-                
-            <a href="home.php" class="navbar-brand">
-                <img id="logo" src="../images/logo.jpg" alt="logo simple classes">
-            </a>
+                <a href="home.php" class="navbar-brand">
+                    <img id="logo" src="../images/logo.jpg" alt="logo simple classes">
+                </a>
 
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar"><span class="navbar-toggler-icon"></span> </button>
 
@@ -46,12 +49,18 @@ session_start();
 
                   <?php
                     if(isset($_SESSION["user_email"])){
-                      echo '<a style="background-color: #434a51; border-radius: 20px;" href="cursos.php" class="nav-link text-white">Meus cursos</a>';
+                      $user_email = $_SESSION["user_email"];
+
+                      if ($user_email === "admin@admin.com") {
+                        echo '<a class="nav-link text-white" href="menssagens-admin.php">Menssagens</a>';
+                      }
+                      else{
+                        echo '<a class="nav-link text-white" href="menssagens.php" style="background-color: #434a51; border-radius: 20px;">Menssagens</a>';
+                      }
                     }
-                    else{
-                      echo '<a href="login.php" class="nav-link text-white">Meus cursos</a>';
-                    }
+                    
                   ?>
+
                 </div>
               </div>
               <form action="" class="d-flex">

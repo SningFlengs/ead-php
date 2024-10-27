@@ -45,6 +45,12 @@ if(isset($_POST['enviado'])){
     } else {
         echo "Upload realizado com sucesso!";
     }
+
+    mysqli_close($connection);
+
+    header("Location: pages/home.php");
+    exit();
+
 }
 
 

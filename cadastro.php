@@ -34,7 +34,7 @@ if(isset($_POST["enviar_cadastro"])){
             if(!$result){
                 die("Erro na consulta do banco dados: ".mysqli_error($connection));
             }else{
-                header("location:pages/auth/login.html?menssagem_sucesso=Cadastro feito com sucesso");
+                header("location:pages/auth/login.php?menssagem_sucesso=Cadastro feito com sucesso");
             }
         }
         

@@ -1,9 +1,17 @@
 <?php
+
 session_start();
+include "../dbphp.php";
+
+if(!isset($_SESSION["user_email"])){
+  header("Location:auth/erro.html");
+  exit();
+}
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,12 +53,18 @@ session_start();
 
                   <?php
                     if(isset($_SESSION["user_email"])){
-                      echo '<a href="cursos.php" class="nav-link text-white">Meus cursos</a>';
+                      $user_email = $_SESSION["user_email"];
+
+                      if ($user_email === "admin@admin.com") {
+                        echo '<a class="nav-link text-white" href="menssagens-admin.php">Menssagens</a>';
+                      }
+                      else{
+                        echo '<a class="nav-link text-white" href="menssagens.php">Menssagens</a>';
+                      }
                     }
-                    else{
-                      echo '<a href="login.php" class="nav-link text-white">Meus cursos</a>';
-                    }
+                    
                   ?>
+
                 </div>
               </div>
               <form action="" class="d-flex">
@@ -59,6 +73,30 @@ session_start();
             </div>
           </nav>
     </header>
+
+    <main class="d-flex justify-content-center align-items-center" style="margin-top: 100px">
+      <div class="account-container p-4 rounded shadow" style="background-color: #f8f9fa; width: 600px; text-align: center;">
+          <h2 class="mb-4">Minha Conta</h2>
+          <ul class="account-options list-unstyled">
+              <li class="mb-3">
+                  
+                  <?php
+                    if ($user_email === "admin@admin.com") {
+                      echo '<a href="envio.php" class="btn btn-upload btn-block" style="background-color: #17a2b8; color: white; width: 100%;">Enviar Vídeo</a>';
+                    }
+                  ?>
+        
+              </li>
+              <li class="mb-3">
+                <a href="../excluir_conta.php" class="btn btn-delete btn-block" style="background-color: #dc3545; color: white; width: 100%;" onclick="return confirm('Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.');">Excluir Conta</a>
+
+              </li>
+              <li>
+                <a href="../logout.php" class="btn btn-logout btn-block" style="background-color: #6c757d; color: white; width: 100%;">Sair da Conta</a>
+              </li>
+          </ul>
+      </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
